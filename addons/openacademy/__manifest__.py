@@ -3,15 +3,14 @@
     'name': "openacademy",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Openacademy tutorial""",
 
     'description': """
-        Long description of module's purpose
+        Odoo module made following the open academy tutorial 
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Dam19",
+    'website': "https://crackwatch.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
