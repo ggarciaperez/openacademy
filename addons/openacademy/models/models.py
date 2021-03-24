@@ -44,16 +44,19 @@ class Session(models.Model):
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats
 
 
-# class openacademy(models.Model):
-#     _name = 'openacademy.openacademy'
-#     _description = 'openacademy.openacademy'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+    @api.onchange('seats', 'attendee_ids')
+    def _verify_valid_seats(self):
+        if self.seats < 0:
+            return {
+                'warning': {
+                    'title': "Incorrect 'seats' value",
+                    'message': "The number of available seats may not be negative",
+                },
+            }
+        if self.seats < len(self.attendee_ids):
+            return {
+                'warning': {
+                    'title': "Too many attendees",
+                    'message': "Increase seats or remove excess attendees",
+                },
+            }
